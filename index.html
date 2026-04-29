@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creative Portfolio | Digital Arts</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1410;
+    --cream: #f5f0e8;
+    --warm: #e8dfd0;
+    --accent: #c9581f;
+    --accent2: #3d6b4f;
+    --muted: #7a6e64;
+    --gold: #c9a84c;
+    --bg: #faf7f2;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,88,31,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -10%; right: -5%;
+    width: 55vw; height: 110vh;
+    background: var(--warm);
+    border-radius: 0 0 0 60% / 0 0 0 40%;
+    z-index: 0;
+  }
+
+  .hero-text {
+    position: relative;
+    z-index: 1;
+    padding-right: 3rem;
+  }
+
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.05;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-subtitle {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 1.5rem 0 2.5rem;
+    line-height: 1.8;
+    border-left: 2px solid var(--accent2);
+    padding-left: 1rem;
+  }
+
+  .hero-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .meta-item label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .meta-item span {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .hero-visual {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-frame {
+    width: 340px;
+    height: 440px;
+    background: linear-gradient(135deg, #e8dfd0 0%, #d4c9b8 100%);
+    border-radius: 2px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 16px 16px 0 var(--accent2), 20px 20px 0 rgba(61,107,79,0.2);
+  }
+
+  .hero-frame-inner {
+    width: 280px;
+    height: 380px;
+    border: 1px solid rgba(201,88,31,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .portrait-placeholder {
+    width: 120px;
+    height: 120px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-style: italic;
+    color: var(--cream);
+  }
+
+  .frame-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .corner-deco {
+    position: absolute;
+    width: 20px; height: 20px;
+    border-color: var(--accent);
+    border-style: solid;
+  }
+  .corner-deco.tl { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
+  .corner-deco.tr { top: 10px; right: 10px; border-width: 1px 1px 0 0; }
+  .corner-deco.bl { bottom: 10px; left: 10px; border-width: 0 0 1px 1px; }
+  .corner-deco.br { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 3rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--accent);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700;
+  }
+
+  /* ARTIST STATEMENT */
+  #statement {
+    background: var(--ink);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #statement::before {
+    content: '"';
+    position: absolute;
+    top: -2rem; left: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 20rem;
+    color: rgba(201,88,31,0.08);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  #statement .section-num { border-color: var(--accent); }
+  #statement .section-title { color: var(--cream); }
+
+  .statement-text {
+    max-width: 720px;
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: rgba(245,240,232,0.85);
+    position: relative;
+    z-index: 1;
+    font-weight: 300;
+  }
+
+  .statement-text p { margin-bottom: 1.2rem; }
+
+  .statement-text em {
+    color: var(--gold);
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+  }
+
+  /* TOC */
+  #toc {
+    background: var(--warm);
+  }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: rgba(201,88,31,0.15);
+    border: 1px solid rgba(201,88,31,0.15);
+  }
+
+  .toc-item {
+    background: var(--warm);
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: background 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .toc-item:hover { background: var(--cream); }
+
+  .toc-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    padding-top: 0.15rem;
+    white-space: nowrap;
+  }
+
+  .toc-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .toc-sub {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* MODULE CARDS */
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .module-card {
+    background: white;
+    border: 1px solid rgba(201,88,31,0.12);
+    padding: 2rem;
+    padding-bottom: 2.4rem;
+    position: relative;
+    overflow: visible;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .module-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(26,20,16,0.1);
+  }
+
+  .module-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .card-m1::after { background: #c9581f; }
+  .card-m2::after { background: #3d6b4f; }
+  .card-m3::after { background: #c9a84c; }
+  .card-m4::after { background: #6b3d8c; }
+  .card-m5::after { background: #c93d5f; }
+  .card-m6::after { background: #3d6b9e; }
+  .card-m7::after { background: #c97a1f; }
+  .card-m8::after { background: #1f7a6b; }
+  .card-m9::after { background: #8c3d6b; }
+  .card-m10::after { background: #4f7a3d; }
+  .card-m11::after { background: #c9581f; }
+
+  .card-artwork {
+    width: calc(100% + 4rem);
+    margin-left: -2rem;
+    margin-top: -2rem;
+    margin-bottom: 1.2rem;
+    background: var(--warm);
+    display: block;
+    line-height: 0;
+  }
+
+  .card-artwork img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  .artwork-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted);
+  }
+
+  .artwork-icon {
+    font-size: 2.5rem;
+    opacity: 0.6;
+  }
+
+  .artwork-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .card-module-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .card-tag {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    background: var(--warm);
+    color: var(--muted);
+  }
+
+  /* PROCESS */
+  #process {
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  #process .section-title { color: var(--cream); }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .process-card {
+    position: relative;
+  }
+
+  .process-step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: rgba(201,88,31,0.25);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .process-work-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .process-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin-bottom: 0.8rem;
+  }
+
+  .process-desc {
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.8;
+  }
+
+  .process-mockup {
+    margin-top: 1.2rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .sketch-line {
+    height: 6px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 3px;
+  }
+
+  .sketch-line.short { width: 60%; }
+  .sketch-line.medium { width: 80%; }
+
+  .sketch-block {
+    height: 60px;
+    background: rgba(201,88,31,0.1);
+    border: 1px dashed rgba(201,88,31,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    color: rgba(201,88,31,0.4);
+    text-transform: uppercase;
+  }
+
+  /* CONTACT / FOOTER */
+  footer {
+    background: var(--cream);
+    border-top: 1px solid rgba(201,88,31,0.15);
+    padding: 4rem 3rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .footer-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-info h2 em { color: var(--accent); font-style: italic; }
+
+  .footer-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .contact-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    min-width: 80px;
+  }
+
+  .contact-value {
+    font-size: 0.85rem;
+    color: var(--ink);
+  }
+
+  .footer-deco {
+    text-align: right;
+  }
+
+  .footer-deco .big-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    font-style: italic;
+    font-weight: 700;
+    color: rgba(201,88,31,0.1);
+    line-height: 1;
+  }
+
+  .copyright {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(201,88,31,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .copyright p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* DECORATIVE */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 3rem;
+    opacity: 0.3;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .divider-dot {
+    width: 4px; height: 4px;
+    background: var(--accent);
+    transform: rotate(45deg);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    animation: fadeUp 0.7s ease forwards;
+  }
+
+  .fade-up-1 { animation-delay: 0.1s; opacity: 0; }
+  .fade-up-2 { animation-delay: 0.25s; opacity: 0; }
+  .fade-up-3 { animation-delay: 0.4s; opacity: 0; }
+  .fade-up-4 { animation-delay: 0.55s; opacity: 0; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; }
+    .hero::before { display: none; }
+    .hero-visual { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .process-grid { grid-template-columns: 1fr; }
+    footer { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+    .footer-deco { display: none; }
+    .divider { margin: 0 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Portfolio — Digital Arts</div>
+  <ul class="nav-links">
+    <li><a href="#statement">Statement</a></li>
+    <li><a href="#toc">Contents</a></li>
+    <li><a href="#modules">Works</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO / COVER PAGE -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="hero-tag fade-up fade-up-1">Digital Arts Portfolio</div>
+    <h1 class="fade-up fade-up-2">Cristel Joy <em>Novero</em></h1>
+    <div class="hero-subtitle fade-up fade-up-3">
+      Course: GE ELEC 3 · Section: BSIT-2D<br>
+      Academic Year 2025–2026
+    </div>
+    <div class="hero-meta fade-up fade-up-4">
+      <div class="meta-item">
+        <label>Course</label>
+        <span>GE ELEC 3</span>
+      </div>
+      <div class="meta-item">
+        <label>Section</label>
+        <span>BSIT-2D</span>
+      </div>
+      <div class="meta-item">
+        <label>Email</label>
+        <span>noverocristel@gmail.com</span>
+      </div>
+      <div class="meta-item">
+        <label>Contact</label>
+        <span> +63 912 372 3498 </span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-frame">
+      <div class="hero-frame-inner">
+        <div class="corner-deco tl"></div>
+        <div class="corner-deco tr"></div>
+        <div class="corner-deco bl"></div>
+        <div class="corner-deco br"></div>
+        <img src="pic.jpg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-dot"></div></div>
+
+<!-- ARTIST STATEMENT -->
+<section id="statement">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Artist Statement</h2>
+  </div>
+  <div class="statement-text">
+    <p><em>Art, for me, is a way to express ideas and feelings without using words.</em></p>
+    <p>
+      As a student, I am learning how to combine technology and creativity through digital art. This portfolio shows my work from eleven modules, where I explored different styles and techniques.
+    </p>
+    <p>
+     My projects include collage, drawing, abstract design, infographic, and meme creation. Each activity helped me improve my skills and understand how to communicate visually. I am also inspired by Filipino culture, especially its colors, patterns, and stories, which I included in some of my works.
+    </p>
+    <p>
+     Through these projects, I learned not only how to create art but also why art is important. This portfolio shows my growth and learning as a student and artist.
+    </p>
+    <p style="font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(245,240,232,0.4); margin-top: 2rem; text-transform: uppercase;">
+      — Cristel Joy Novero, 2025–2026
+    </p>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-dot"></div></div>
+
+<!-- TABLE OF CONTENTS -->
+<section id="toc">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Table of Contents</h2>
+  </div>
+  <div class="toc-grid">
+    <a href="#modules" class="toc-item">
+      <span class="toc-num">M01</span>
+      <div>
+        <div class="toc-name">Digital Visual World Collage</div>
+        <div class="toc-sub">Mixed Media · Digital</div>
+      </div>
+    </a>
+    <a href="#modules" class="toc-item">
+      <span class="toc-num">M02</span>
+      <div>
+        <div class="toc-name">Observational Drawing</div>
+        <div class="toc-sub">7 Elements of Art</div>
+      </div>
+    </a>
+    <a href="#modules" class="toc-item">
+      <span class="toc-num">M03</span>
+      <div>
+        <div class="toc-name">Abstract Composition</div>
+        <div class="toc-sub">Non-representational</div>
+      </div>
+    </a>
+    <a href="#modules" class="toc-item">
+      <span class="toc-num">M04</span>
+      <div>
+        <div class="toc-name">Transformation Series</div>
+        <div class="toc-sub">3 Versions</div>
+      </div>
+    </a>
+    <a href="#modules" class="toc-item">
+      <span class="toc-num">M05</span>
+      <div>
+        <div class="toc-name">Filipino-Inspired Pattern</div>
+        <div class="toc-sub">Cultural Design</div>
+      </div>
+    </a>
+    <a href="#modules" class="toc-item">
+      <span class="toc-num">M06–07</span>
+      <div>
+        <div class="toc-name">Drawing or Painting</div>
+        <div class="toc-sub">Studio Artwork</div>
+      </div>
+    </a>
+    <a href="#modules" class="toc-item">
+      <span class="toc-num">M08</span>
+      <div>
+        <div class="toc-name">Digital Poster</div>
+        <div class="toc-sub">Graphic Design</div>
+      </div>
+    </a>
+    <a href="#modules" class="toc-item">
+      <span class="toc-num">M09</span>
+      <div>
+        <div class="toc-name">Photo Narrative Series</div>
+        <div class="toc-sub">3 Photographs</div>
+      </div>
+    </a>
+    <a href="#modules" class="toc-item">
+      <span class="toc-num">M10</span>
+      <div>
+        <div class="toc-name">Infographic</div>
+        <div class="toc-sub">IT Topic</div>
+      </div>
+    </a>
+    <a href="#modules" class="toc-item">
+      <span class="toc-num">M11</span>
+      <div>
+        <div class="toc-name">Meme Series</div>
+        <div class="toc-sub">Digital Culture</div>
+      </div>
+    </a>
+    <a href="#process" class="toc-item">
+      <span class="toc-num">DOC</span>
+      <div>
+        <div class="toc-name">Process Documentation</div>
+        <div class="toc-sub">Sketches & Iterations</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-dot"></div></div>
+
+<!-- MODULE OUTPUTS -->
+<section id="modules">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Module Outputs</h2>
+  </div>
+  <div class="modules-grid">
+
+    <!-- M1 -->
+    <div class="module-card card-m1">
+      <div class="card-artwork">
+        <img src="module 1.jpg">
+      </div>
+      <div class="card-module-num">Module 01</div>
+      <div class="card-title">Digital Visual World Collage</div>
+      <div class="card-desc">This is my digital visual world collage, where I compiled the apps and digital platforms that are part of my everyday life, including social media, streaming, and productivity tools.</div>
+      <span class="card-tag">Collage · Digital</span>
+    </div>
+
+    <!-- M2 -->
+    <div class="module-card card-m2">
+      <div class="card-artwork">
+        <img src="module 2.jpg">
+      </div>
+      <div class="card-module-num">Module 02</div>
+      <div class="card-title">Observational Drawing — 7 Elements</div>
+      <div class="card-desc">
+This is my still life pencil drawing of a bowl and a "Cheese Cute" mug, where I practiced observational drawing and basic shading techniques.</div> 
+      <span class="card-tag">Drawing · Observation</span>
+    </div>
+
+    <!-- M3 -->
+    <div class="module-card card-m3">
+      <div class="card-artwork">
+        <img src="module 3.jpg">
+      </div>
+      <div class="card-module-num">Module 03</div>
+      <div class="card-title">Abstract Composition</div>
+      <div class="card-desc">This is my abstract composition using cut paper triangles in shades of green and blue, exploring how shapes and colors can create movement and visual energy..</div>
+      <span class="card-tag">Abstract · Composition</span>
+    </div>
+
+    <!-- M4 -->
+    <div class="module-card card-m4">
+      <div class="card-artwork">
+      <img src="module 4.jpg">
+      </div>
+      <div class="card-module-num">Module 04</div>
+      <div class="card-title">Transformation Series</div>
+      <div class="card-desc">This is my activity demonstrating the three types of art — representational, abstract, and non-objective — using a banana as my subject.</div>
+      <span class="card-tag">Series · 3 Versions</span>
+    </div>
+
+    <!-- M5 -->
+    <div class="module-card card-m5">
+      <div class="card-artwork">
+      <img src="module 5.jpg">
+      </div>
+      <div class="card-module-num">Module 05</div>
+      <div class="card-title">Filipino-Inspired Pattern Design</div>
+      <div class="card-desc">This is my Baybayin writing activity where I wrote my name, Cristel Novero, in the traditional Philippine script, framed with a geometric zigzag border.</div>
+      <span class="card-tag">Pattern · Cultural</span>
+    </div>
+
+    <!-- M6-7 -->
+    <div class="module-card card-m6">
+      <div class="card-artwork">
+        <img src="module 6&7.jpg">
+      </div>
+      <div class="card-module-num">Module 06–07</div>
+      <div class="card-title">Drawing or Painting Artwork</div>
+      <div class="card-desc">This is my still life drawing with shading, focusing on rendering a mug and egg-like object with realistic light and shadow.</div>
+      <span class="card-tag">Studio · Fine Art</span>
+    </div>
+
+    <!-- M8 -->
+    <div class="module-card card-m7">
+      <div class="card-artwork">
+       <img src="module 8.jpg">
+      </div>
+      <div class="card-module-num">Module 08</div>
+      <div class="card-title">Digital Poster</div>
+      <div class="card-desc">This is my digital poster designed for a Cybersecurity Awareness Campaign, promoting a free seminar titled "Secure Your Future: Stop Cyber Threats Today!" scheduled on April 20, 2026, from 8:00 AM to 2:00 PM at the Community Hall, where I applied my graphic design skills to create a professional and visually impactful layout using a dark blue theme with security shield icons to effectively convey the importance of online safety..</div>
+      <span class="card-tag">Graphic Design · Print</span>
+    </div>
+
+    <!-- M9 -->
+    <div class="module-card card-m8">
+      <div class="card-artwork">
+        <img src="module 9.jpg">
+      </div>
+      <div class="card-module-num">Module 09</div>
+      <div class="card-title">Photo Narrative Series</div>
+      <div class="card-desc">This is my photo documentation of a typical school day, capturing the beginning, middle, and end of my day as an IT student at the University of Eastern Pangasinan.</div>
+      <span class="card-tag">Photography · Narrative</span>
+    </div>
+
+    <!-- M10 -->
+    <div class="module-card card-m9">
+      <div class="card-artwork">
+       <img src="module 10.jpg">
+      </div>
+      <div class="card-module-num">Module 10</div>
+      <div class="card-title">Infographic — IT Topic</div>
+      <div class="card-desc">This is my infographic about the top cybersecurity threats and how to avoid them, covering phishing, malware, ransomware, and DDoS attacks with practical safety tips.
+</div>
+      <span class="card-tag">Infographic · IT</span>
+    </div>
+
+    <!-- M11 -->
+    <div class="module-card card-m10">
+      <div class="card-artwork">
+        <img src="module 12.jpg">
+      </div>
+      <div class="card-module-num">Module 11</div>
+      <div class="card-title">Meme Series Creation</div>
+      <div class="card-desc">This meme shows how people often say they are ‘fine’ even when they are actually stressed and sleep-deprived. It relates to mental health awareness and student life, especially during deadlines.</div>
+      <span class="card-tag">Digital Culture · Humor</span>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"><div class="divider-dot"></div></div>
+
+<!-- PROCESS DOCUMENTATION -->
+<section id="process">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Process Documentation</h2>
+  </div>
+  <div class="process-grid">
+
+   <div class="process-card">
+  <div class="process-step-num">01</div>
+  <div class="process-work-num">Work Documentation — Module 1</div>
+  <div class="process-title">Digital Visual World Collage</div>
+  <div class="process-desc">
+   For my process documentation on Activity 1, I placed all the apps and screenshots where my social life happens against a white background.
+  </div>
+  <div class="process-mockup">
+    <img src="Mod 1.jpg" style="width:100%; height:auto; display:block;">
+    <div class="sketch-line medium" style="margin-top:0.5rem;"></div>
+    <div class="sketch-line short"> </div>
+  </div>
+</div>
+
+    <div class="process-card">
+  <div class="process-step-num">02</div>
+  <div class="process-work-num">Work Documentation — Module 3</div>
+  <div class="process-title">Abstract Composition</div>
+  <div class="process-desc">
+  For my process documentation on Activity 3, I used scissors, glue, and colored paper to create a mix of triangular and organic shapes. I chose a cool color scheme—including blue, light blue, light green, and green—to evoke a calm and soft feeling in the piece.
+  </div>
+  <div class="process-mockup">
+    <img src="Mod 3.jpg" style="width:100%; height:auto; display:block;">
+    <div class="sketch-line medium" style="margin-top:0.5rem;"></div>
+    <div class="sketch-line short"></div>
+  </div>
+</div>
+
+   <div class="process-card">
+  <div class="process-step-num">03</div>
+  <div class="process-work-num">Work Documentation — Module 9</div>
+  <div class="process-title">Photo Narrative Series</div>
+  <div class="process-desc">
+     For my process documentation on Activity 9, I started by placing all the images on a white background.
+  </div>
+  <div class="process-mockup">
+    <img src="Mod 9.jpg" style="width:100%; height:auto; display:block;">
+    <div class="sketch-line medium" style="margin-top:0.5rem;"></div>
+    <div class="sketch-line short"></div>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<div class="divider"><div class="divider-dot"></div></div>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+  <div class="footer-info">
+    <h2>Get in <em>Touch</em></h2>
+    <p style="color: var(--muted); font-size: 0.85rem; margin-top: 0.5rem;">Open to feedback, collaboration, and connection.</p>
+    <div class="footer-contacts">
+      <div class="contact-row">
+        <span class="contact-label">Full Name</span>
+        <span class="contact-value">Cristel Joy Novero</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Course</span>
+        <span class="contact-value">GE ELEC 3</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Section</span>
+        <span class="contact-value">BSIT-2D</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">noverocristel@gmail.com</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Phone</span>
+        <span class="contact-value">+63 912 372 3498 </span>
+      </div>
+    </div>
+    <div class="copyright" style="margin-top: 2rem; border-top: 1px solid rgba(201,88,31,0.15); padding-top: 1.5rem;">
+      <p style="font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase;">
+        © 2026 · Digital Arts Portfolio · Cristel Joy Novero · All rights reserved
+      </p>
+    </div>
+  </div>
+  <div class="footer-deco">
+    <div class="big-letter">Art</div>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.module-card, .process-card, .toc-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
